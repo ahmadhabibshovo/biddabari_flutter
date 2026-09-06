@@ -25,12 +25,22 @@ class CourseCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(8.sp),
+      decoration: BoxDecoration(
+        border: Border.all(width: 2.w),
+        borderRadius: BorderRadius.circular(16.r),
+      ),
       padding: EdgeInsets.all(20.r),
 
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CachedNetworkImage(imageUrl: bannerImage),
+          CachedNetworkImage(
+            imageUrl: bannerImage,
+            errorWidget: (context, url, error) => Icon(Icons.image),
+            placeholder: (context, message) =>
+                Center(child: CircularProgressIndicator()),
+          ),
           Text(courseTitile),
           Text(courseSubtitle),
           Text(coursePrice),
